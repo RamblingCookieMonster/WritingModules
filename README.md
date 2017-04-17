@@ -23,7 +23,7 @@ And many more.  Poke around other community modules to see what folks are doing!
 
 ### Module Building Tools
 
-* [Plaster](https://github.com/PowerShell/Plaster) - Microsoft's module - I'd recommend this over any others going forward
+* [Plaster](https://github.com/PowerShell/Plaster) - Microsoft's module - I'd recommend this module building tool over any others going forward
 * [PSModuleBuild](https://github.com/zloeber/PSModuleBuild)
 * [ConvertTo-Module](https://github.com/martin9700/ConvertTo-Module)
 
@@ -100,6 +100,7 @@ On module and function design, among other things:
 * [Free eBook on PowerShell Advanced Functions](http://mikefrobbins.com/2015/04/17/free-ebook-on-powershell-advanced-functions/)
 * [The PowerShell Best Practices and Style Guide](https://github.com/PoshCode/PowerShellPracticeAndStyle) - issues like [#22](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/22) and [#59](https://github.com/PoshCode/PowerShellPracticeAndStyle/issues/59)
 * Plaster issues, including [#2](https://github.com/PowerShell/Plaster/issues/2)
+* [Building a PowerShell Module](http://ramblingcookiemonster.github.io/Building-A-PowerShell-Module/) - A practical example
 
 Misc:
 
