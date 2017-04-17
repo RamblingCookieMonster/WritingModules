@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Started from https://github.com/PowerShell/PlasterBuild/blob/master/src/Templates/NewAdvancedPowerShellModule/plasterManifest.xml
+    Made a few opinionated choices
+-->
+<plasterManifest schemaVersion="1.0" xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+    <metadata>
+        <name>ModulePracticsExample</name>
+        <id>f50ebbea-98e0-4ab1-a26e-e3a8663685cb</id>
+        <version>0.0.1</version>
+        <title>Module Practices Example</title>
+        <description>PowerShell module scaffolding</description>
+        <author>Warren Frame</author>
+        <tags>GitHub, AppVeyor, Module</tags>
+    </metadata>
+    <parameters>
+        <parameter name='ModuleName'
+                   type='text'
+                   prompt='Enter the name of the module'/>
+        
+        <parameter name='ModuleDesc'
+                   type='text'
+                   prompt='Enter a description of the module (required for publishing to the PowerShell Gallery)'/>
+        
+        <parameter name='Version'
+                   type='text'
+                   prompt='Enter the version number of the module'
+                   default='0.0.1'/>
+        
+        <parameter name='FullName'
+                   type='user-fullname'
+                   prompt='Enter your full name'
+                   store='text' />
+        
+        <parameter name='License'
+                   type='choice'
+                   prompt='Select a license (see http://choosealicense.com for help choosing):'
+                   default='2'
+                   store='text'>
+            
+            <choice label='&amp;None'
+                    help="No license."
+                    value="None"/>
+            
+            <choice label='&amp;Apache'
+                    help="Adds an Apache license file."
+                    value="Apache"/>
+            
+            <choice label='&amp;MIT'
+                    help="Adds an MIT license file."
+                    value="MIT"/>
+        </parameter>
+
+        <parameter name='Editor'
+                   type='choice'
+                   prompt='Select one of the supported script editors for better editor integration (or None):'
+                   default='0'
+                   store='text' >
+
+            <choice label='&amp;None'
+                    help="No editor specified."
+                    value="None"/>
+
+            <choice label='Visual Studio &amp;Code'
+                    help="Your editor is Visual Studio Code."
+                    value="VSCode"/>
+        </parameter>
+    </parameters>
+    <content>
+        <message>&#10;&#10;Scaffolding your PowerShell Module...&#10;&#10;&#10;</message>
+
+        <newModuleManifest destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psd1'
+                           moduleVersion='$PLASTER_PARAM_Version'
+                           rootModule='${PLASTER_PARAM_ModuleName}.psm1'
+                           author='$PLASTER_PARAM_FullName'
+                           description='$PLASTER_PARAM_ModuleDesc'
+                           encoding='UTF8-NoBOM'/>
+
+        <file source='_gitignore'
+              destination='.gitignore' />
+
+        <file source='Start-Build.ps1'
+              destination='' />
+
+        <file source='ReleaseNotes.md'
+              destination=''/>
+
+        <file source='src\Module.psm1'
+              destination='${PLASTER_PARAM_ModuleName}\${PLASTER_PARAM_ModuleName}.psm1'/>
+
+        <file source='Build\*'
+              destination='Build'/>
+
+        <file source=''
+              destination='${PLASTER_PARAM_ModuleName}\Private'/>
+
+        <file source=''
+              destination='${PLASTER_PARAM_ModuleName}\Public'/>
+
+        <file source='ScriptAnalyzerSettings.psd1'
+              destination=''/>
+
+        <templateFile source='docs\en-US\about_Module.help.md'
+                      destination='docs\en-US\about_${PLASTER_PARAM_ModuleName}.help.md'/>
+                
+        <templateFile source='test\Module.T.ps1'
+                      destination='test\${PLASTER_PARAM_ModuleName}.Tests.ps1' />
+        
+        <templateFile source='test\Shared.ps1'
+                      destination='test\Shared.ps1' />
+        
+        <templateFile condition="$PLASTER_PARAM_License -eq 'Apache'"
+                      source='license\Apache.txt'
+                      destination='LICENSE.txt'
+                      encoding="UTF8-NoBOM"/>
+        
+        <templateFile condition="$PLASTER_PARAM_License -eq 'MIT'"
+                      source='license\MIT.txt'
+                      destination='LICENSE.txt' />
+
+        <file condition="($PLASTER_PARAM_Editor -eq 'VSCode')"
+              source='editor\VSCode\tasks_psake_pester.json'
+              destination='.vscode\tasks.json' />
+
+        <file condition="($PLASTER_PARAM_Editor -eq 'VSCode')"
+              source='editor\VSCode\settings.json'
+              destination='.vscode\settings.json' />
+
+        <message>
+
+Your new PowerShell module project '$PLASTER_PARAM_ModuleName' has been created.
+
+        </message>
+
+        <message>
+A Pester test has been created to validate the module's manifest file.  Add additional tests to the test directory.
+You can run the Pester tests in your project by executing the 'test' task.  Press Ctrl+P, then type 'task test'.
+
+        </message>
+
+
+    
+    </content>
+</plasterManifest>
