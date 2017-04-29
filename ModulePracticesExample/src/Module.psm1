@@ -5,7 +5,7 @@ param (
 # Get public and private function definition files
     $Public  = @( Get-ChildItem -Path $PSScriptRoot\Public\*.ps1 -ErrorAction SilentlyContinue )
     $Private = @( Get-ChildItem -Path $PSScriptRoot\Private\*.ps1 -ErrorAction SilentlyContinue )
-    $FilesToLoad = @([string[]]$Public + [string[]]$Private) | Where {$_}
+    $FilesToLoad = @([object[]]$Public + [object[]]$Private) | Where-Object {$_}
     $ModuleRoot = $PSScriptRoot
 
 # Dot source the files
@@ -34,3 +34,4 @@ param (
         }
     }
 
+Export-ModuleMember -Function $Public.Basename
