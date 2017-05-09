@@ -91,6 +91,9 @@
         <file source='Build\*'
               destination='Build'/>
 
+        <file source='Build\helpers\*'
+              destination='Build\helpers'/>
+
         <file source=''
               destination='${PLASTER_PARAM_ModuleName}\Private'/>
 
