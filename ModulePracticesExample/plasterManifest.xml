@@ -91,6 +91,9 @@
         <file source='Build\*'
               destination='Build'/>
 
+        <file source='Build\helpers\*'
+              destination='Build\helpers'/>
+
         <file source=''
               destination='${PLASTER_PARAM_ModuleName}\Private'/>
 
@@ -102,6 +105,9 @@
 
         <templateFile source='docs\en-US\about_Module.help.md'
                       destination='docs\en-US\about_${PLASTER_PARAM_ModuleName}.help.md'/>
+
+        <templateFile source='README.md'
+                      destination='README.md'/>
                 
         <templateFile source='test\Module.T.ps1'
                       destination='test\${PLASTER_PARAM_ModuleName}.Tests.ps1' />
